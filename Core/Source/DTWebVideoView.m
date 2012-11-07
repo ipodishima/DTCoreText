@@ -78,7 +78,9 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
 	// only allow the embed request
-	if ([[[request URL] absoluteString] hasPrefix:@"http://www.youtube.com/embed/"])
+	if ([[[request URL] absoluteString] hasPrefix:@"http://www.youtube.com/embed/"]
+		||
+		[[[request URL] absoluteString] hasPrefix:@"http://www.dailymotion.com/embed/"])
 	{
 		return YES;
 	}
