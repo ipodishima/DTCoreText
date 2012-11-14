@@ -77,6 +77,9 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
+	// Return yes for all iframe (we'll see)
+	return YES;
+	
 	// only allow the embed request
 	if ([[[request URL] absoluteString] hasPrefix:@"http://www.youtube.com/embed/"]
 		||
