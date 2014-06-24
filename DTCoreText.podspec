@@ -16,11 +16,8 @@ Pod::Spec.new do |spec|
   spec.xcconfig     = { 'HEADER_SEARCH_PATHS' => '"$(SDKROOT)/usr/include/libxml2"' }
   spec.prefix_header_contents = '#import <CoreText/CoreText.h>'
   spec.resources = 'Demo/Resources/DTCoreTextFontOverrides.plist'
-  def spec.post_install(target)
-    Dir.chdir(config.project_pods_root + 'DTCoreText/Core/Source/') do
-      Dir.glob('*.css') do |css_file|
-        system '/usr/bin/xxd', '-i', css_file, css_file + '.c'
-      end
-    end
-  end
+  spec.prepare_command = <<-CMD
+     cd ./Core/Source
+     /usr/bin/xxd -i default.css default.css.c
+  CMD
 end
